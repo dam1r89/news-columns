@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery.min.js"></script>
+  <script src="grid.js"></script>
+  <meta charset="UTF-8">
+  <title>Grid proba</title>
+</head>
+<body>
+  <div class="news grid">
+    <a href="news/show/54" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1360002764.jpg">
+      <h2>The Culture of Lausanne</h2>
+      <p>The eyes of ballet-lovers around the world have been on Lausanne throughout the last week of January and the first few days of February, as the town plays host to the annual Prix de Lausanne.</p>
+    </a>
+    <a href="news/show/52" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1360002019.jpg">
+      <h2>Du Parc: A Commitment to Sustainable Living</h2>
+      <p>The transformation of the historic Hotel Du Parc into the Du Parc Kempinski Private Residences is taking place in strict adherence to Swiss MINERGIE standards. Supported by the Swiss Confederation, the Swiss Cantons and the Trade and Industry Department, MINERGIE is an environmentally-sustainable brand for both new and renovated buildings</p>
+    </a>
+    <a href="news/show/48" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1358851834.jpg">
+      <h2>The Luxurious World of Swiss Craftsmanship</h2>
+      <h3>Lorem ipsum dolor sit amet</h3>
+      <p>Switzerland has long since been considered a country of perfection and precision, and never are these qualities more evident than in the production of Swiss luxury goods, namely, in the making of exquisite timepieces.</p>
+      <p class="quote">Lorem ipsum dolor sit amet</p>
+    </a>
+    <a href="news/show/47" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1358851170.jpg">
+      <h2>A Designer Spa Experience</h2>
+      <p>Beauty is no longer a ploy used in the art of seduction, it is the very essence of charm, sophistication and elegance; it is synonymous with simplicity and subtlety.</p>
+    </a>
+    <a href="news/show/30" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1354543565.jpg">
+      <h2>Wine Tours throughout the Lavaux region</h2>
+      <p>Composed of terraced vineyards and charming Swiss villages, the region of Montreux is renowned for its viticulture and unrivalled natural beauty.</p>
+    </a>
+    <a href="news/show/26" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1354290181.jpg">
+      <h2>Davidoff, A Luxurious History </h2>
+      <p>Synonymous with sophistication, luxury and an international clientele, Davidoff Cigars could not be a better affiliate for Du Parc Kempinski Residences.</p>
+    </a>
+    <a href="news/show/12" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1350383148.jpg">
+      <h2>The Music Scene around Du Parc</h2>
+      <p>In a multicultural city like Geneva or in the Geneva area , the array of concerts and musicals that take place mirrors the strong and varied musical scene. Thanks to their cultured population, music festivals are at a premium, and for live music, Geneva region is hard to beat. </p>
+    </a>
+    <a href="news/show/6" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1350382440.jpg">
+      <h2>Life on Lake Geneva</h2>
+      <p>Lake Geneva and its tranquil waters have long provided a retreat from city life. In the 19th century, the pre-eminent writer Lord Byron and his friends Percy and Mary Shelley flocked to its shores, spending their days sailing the lake, described by Mary as 'blue as the heavens which it reflects'.</p>
+    </a>
+    <a href="news/show/15" class="grid-element">
+      <img src="http://sdg.ch/newsadmin/public/uploads/thumbs/1350579583.jpg">
+      <h2>Stunning Le Mirador Kempinski, Lake Geneva</h2>
+      <p>High up on the green slopes of Mont-Plerin, among Switzerlands UNESCO heritage vineyards, the newly renovated Le Mirador Kempinski, combines inspiring views of the Alpine skyline and landscape with sleek, contemporary design and world-class service since 1904.</p>
+    </a>
+    <script>
+    $(window).load(function(){
+      g = new Grid();
+      $(window).resize(debounce);
+      var t;
+      function debounce() {
+        clearTimeout(t);
+        t=setTimeout(function(){
+          g.arrange();
+        },200);
+      }
+
+    })
+    </script>
+  </body>
+  </html>

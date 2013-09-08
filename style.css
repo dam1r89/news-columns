@@ -1,0 +1,12 @@
+.grid{
+    margin: auto;
+}
+.grid-element{
+    width: 300px;
+    visibility: hidden;
+    text-decoration: none;
+    color:inherit;
+}
+.grid-element img{
+    width: 300px;
+}
