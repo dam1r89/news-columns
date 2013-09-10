@@ -1,17 +1,23 @@
 (function($, window){
+
     'use strict';
+
     function Grid(ops){
         this.options = $.extend({}, this.defaults, ops);
-        this.options.method = this.options.animate ? 'animate' : 'css';
+        this.options.method = this.options.animate && !this.options.transform ? 'animate' : 'css';
         this.init();
     }
+
     Grid.prototype = {
+
         defaults: {
             selector: '.grid',
+            transform: true,
             animate: true,
             colSpacing: 20,
             marginTop: 0,
-            marginLeft: 0
+            marginLeft: 0,
+            speed: 200
         },
         refresh: function(){
             this.arrange();
@@ -28,15 +34,19 @@
             this.$grid.css({
                 position: 'relative'
             });
-            this.$elements.css({
+            var elementCss = {
                 position:'absolute',
                 visibility: 'hidden'
-            });
+            }
+            if (this.options.transform && this.options.animate){
+                elementCss.transition = this.options.speed+'ms';
+            }
+            this.$elements.css(elementCss);
         },
         arrange: function(){
             this.setVars();
             var _this = this,
-                colsPerRow = Math.floor(this.gridWidth / this.elementWidth),
+                colsPerRow = Math.max(Math.floor(this.gridWidth / this.elementWidth),1),
                 lasts = [],
                 targetPosition;
 
@@ -63,7 +73,6 @@
                             left: _this.options.marginLeft
                         };
                     }
-                    $this.stop(true)[_this.options.method](targetPosition).data('targetPosition',targetPosition);
                     lasts.push($this);
 
                 }
@@ -90,14 +99,16 @@
                         left: minEl.data('targetPosition').left
                     };
 
-                    $this.stop(true)[_this.options.method](targetPosition).data('targetPosition',targetPosition);
                 }
+
+                $this.stop(true)[_this.options.method](_this.getPosition(targetPosition), _this.options.speed).data('targetPosition',targetPosition);
+
             });
             //racuna donju velicinu da poveca kontejner
             var maxPos = 0;
             $.each(lasts, function(){
                 var $this = $(this),
-                    thisMax = $this.position().top + $this.outerHeight(true);
+                    thisMax = $this.data('targetPosition').top + $this.outerHeight(true);
 
                 if (thisMax > maxPos){
                     maxPos = thisMax;
@@ -107,11 +118,19 @@
                 height: maxPos
             });
         },
+        getPosition: function(position){
+                return this.options.transform ? {transform: 'translate(' + position.left + 'px,' + position.top + 'px)'} : position;
+        },
         init: function(){
+
             this.findElements();
             this.setStyle();
             this.arrange();
+
         }
+
     };
+
     window.Grid = Grid;
+
 })(jQuery, window);

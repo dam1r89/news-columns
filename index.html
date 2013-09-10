@@ -58,7 +58,7 @@
     </a>
     <script>
     $(window).load(function(){
-      g = new Grid();
+      g = new Grid({animate: true, transform: true});
       $(window).resize(debounce);
       var t;
       function debounce() {
